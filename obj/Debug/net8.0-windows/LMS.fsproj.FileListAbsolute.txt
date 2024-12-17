@@ -133,3 +133,4 @@ E:\Desktop\Project concept\LMS\obj\Debug\net8.0-windows\refint\LMS.dll
 E:\Desktop\Project concept\LMS\obj\Debug\net8.0-windows\LMS.pdb
 E:\Desktop\Project concept\LMS\obj\Debug\net8.0-windows\LMS.genruntimeconfig.cache
 E:\Desktop\Project concept\LMS\obj\Debug\net8.0-windows\ref\LMS.dll
+E:\Desktop\Project concept\LMS\obj\Debug\net8.0-windows\LMS.sourcelink.json

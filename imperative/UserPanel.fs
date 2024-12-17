@@ -19,6 +19,7 @@ let createForm () =
     let updateUserButton = new Button(Text = "Update User", AutoSize = true, Location = Point(20, 70) ,BackColor = Color.Blue , ForeColor = Color.White , Font = new Font("sans", 12.0f))
     let borrowBookButton = new Button(Text = "Borrow Book", AutoSize = true, Location = Point(180, 70) ,BackColor = Color.Blue , ForeColor = Color.White , Font = new Font("sans", 12.0f))
     let returnBookButton = new Button(Text = "Return Book", AutoSize = true, Location = Point(20, 120) ,BackColor = Color.Blue , ForeColor = Color.White , Font = new Font("sans", 12.0f))
+    let histroyButton = new Button(Text = "History of borrowings", AutoSize = true, Location = Point(180, 120) ,BackColor = Color.Blue , ForeColor = Color.White , Font = new Font("sans", 12.0f))
 
     searchButton.Click.Add(fun _ -> 
        Search.mainForm()
@@ -35,6 +36,9 @@ let createForm () =
     returnBookButton.Click.Add(fun _ -> 
         UserController.returnBookForm()
     )
+    histroyButton.Click.Add(fun _ -> 
+        UserController.borrowingHistoryForm()
+    )
 
 
     // Add Controls to Form
@@ -43,6 +47,7 @@ let createForm () =
     form.Controls.Add(updateUserButton)
     form.Controls.Add(borrowBookButton)
     form.Controls.Add(returnBookButton)
+    form.Controls.Add(histroyButton)
 
     form.Show()
 

@@ -218,7 +218,7 @@ let borrowingHistoryForm () =
         use conn = new MySqlConnection(connectionString)
         conn.Open()
 
-        BorrowingController.borrowingHistory conn emailTextBox listBox statusLabel
+        BorrowingController.borrowingHistoryAdmin conn emailTextBox listBox statusLabel
     )
 
     form.Controls.Add(emailLabel)
