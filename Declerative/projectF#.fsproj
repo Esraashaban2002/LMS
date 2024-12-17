@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Connction.fs" />
+    <Compile Include="User.fs" />
+    <Compile Include="Admin.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
