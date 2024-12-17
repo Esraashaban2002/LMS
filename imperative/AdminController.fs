@@ -103,7 +103,7 @@ let UpdateForm () =
 
     let statusLabel = new Label(Location = Point(10, 160), Width = 400, Height = 30)
 
-    let showButton = new Button(Text = "Show Book Details", AutoSize = true, Location = Point(10, 190), BackColor = Color.Pink , ForeColor = Color.White , Font = new Font("sans", 19.0f))
+    let showButton = new Button(Text = "Show Book Details", AutoSize = true, Location = Point(10, 190), BackColor = Color.Pink , ForeColor = Color.White , Font = new Font("sans", 12.0f))
 
     // Event Handler to Show Book Details
     showButton.Click.Add(fun _ -> 

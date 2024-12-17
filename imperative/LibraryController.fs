@@ -6,12 +6,16 @@ open System.Windows.Forms
 open System.Drawing
 open MySql.Data.MySqlClient
 
-let bookExists (conn: MySqlConnection) (bookIdTextBox: TextBox) =
-        let bookId = Int32.Parse(bookIdTextBox.Text)
-        use checkCmd = new MySqlCommand("SELECT COUNT(*) FROM Book WHERE Book_ID = @bookId", conn)
-        checkCmd.Parameters.AddWithValue("@bookId", bookId) |> ignore
-        let count =(checkCmd.ExecuteScalar() :?> int64)
-        count > 0
+let bookExists (conn: MySqlConnection) (bookIdTextBox: TextBox) (statusLabel: Label) =
+    try
+        use cmd = new MySqlCommand("SELECT COUNT(*) FROM Book WHERE Book_ID = @bookId", conn)
+        cmd.Parameters.AddWithValue("@bookId", bookIdTextBox.Text) |> ignore
+        let count = cmd.ExecuteScalar() :?> int64
+        count > 0L
+    with
+    | ex ->
+        statusLabel.Text <- sprintf "Error checking if book exists: %s" ex.Message
+        false
 
 let rec getValidCopies (copiesTextBox: TextBox) (statusLabel: Label) =
     try
@@ -71,7 +75,7 @@ let updateBook (conn: MySqlConnection) (bookIdTextBox: TextBox) (bookNameTextBox
     try
         let bookId = Int32.Parse(bookIdTextBox.Text)
 
-        if bookExists conn bookIdTextBox then
+        if bookExists conn bookIdTextBox statusLabel then
             // Fetch current values for the book
             use fetchCmd = new MySqlCommand("SELECT Book_Name, Book_Type, Author_Name, Number_of_copies FROM Book WHERE Book_ID = @bookId", conn)
             fetchCmd.Parameters.AddWithValue("@bookId", bookId) |> ignore
@@ -93,7 +97,7 @@ let updateBook (conn: MySqlConnection) (bookIdTextBox: TextBox) (bookNameTextBox
 
                  // Add the update button to the form
                 let form = bookIdTextBox.FindForm()
-                let updateButton = new Button(Text = "Update Books", AutoSize = true, Location = Point(190, 190) , BackColor = Color.Pink )
+                let updateButton = new Button(Text = "Update Books", AutoSize = true, Location = Point(190, 190) , BackColor = Color.Pink ,  ForeColor = Color.White , Font = new Font("sans", 12.0f) )
                 updateButton.Click.Add(fun _ ->
                     let connectionString = Connection.connectionString
                     use conn = new MySqlConnection(connectionString)
@@ -134,7 +138,7 @@ let deleteBookById (conn: MySqlConnection) (bookIdTextBox: TextBox) (statusLabel
     try
         let bookId = Int32.Parse(bookIdTextBox.Text)
         
-        if bookExists conn bookIdTextBox then
+        if bookExists conn bookIdTextBox statusLabel then
             MessageBox.Show("You Are Sure To Delete this Book?")
             use cmd = new MySqlCommand("DELETE FROM Book WHERE Book_ID = @bookId", conn)
             cmd.Parameters.AddWithValue("@bookId", bookId) |> ignore
