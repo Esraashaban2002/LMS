@@ -76,7 +76,10 @@ let registerUser conn role =
     try
         executeQuery query parameters conn |> ignore 
         use getIdCmd = new MySqlCommand("SELECT LAST_INSERT_ID();", conn)
-        let userId = getIdCmd.ExecuteScalar() :?> int
+        let userId =
+            match getIdCmd.ExecuteScalar() with
+            | :? uint64 as id -> int id // Explicit conversion
+            | _ -> failwith "Failed to retrieve last inserted ID."
         printfn "Welcome, %s! You have registered as a %s." name role
         userId
     with ex ->

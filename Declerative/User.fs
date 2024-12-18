@@ -7,12 +7,10 @@ open Connction
 let connectionString = Connction.connectionString
 
 
-let showUserDetails conn =
-    printf "Enter your Email: "
-    let email = Console.ReadLine()
-
-    let query = "SELECT  name, email, password FROM users WHERE email = @input"
-    let parameters = [ ("@input", email) ]
+let showUserDetails conn userId =
+    
+    let query = "SELECT  name, email, password FROM users WHERE id = @userId"
+    let parameters = [ ("@userId", userId) ]
 
     use reader = executeReader conn query parameters
     if reader.Read() then
@@ -78,7 +76,8 @@ let updateUser conn (userId: int) =
             printfn "No user found with the given email."
     with
     | ex -> printfn "Error while updating the user: %s" ex.Message
-// Display avaliable books
+
+
 let borrowBook conn userId =
     printf "Enter the Book Name you want to borrow: "
     let bookName = Console.ReadLine()

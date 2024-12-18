@@ -1,33 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Desktop\\Project concept\\LMS\\Declerative\\projectF#.fsproj": {}
+    "D:\\Library system\\LMS\\Declerative\\projectF#.fsproj": {}
   },
   "projects": {
-    "E:\\Desktop\\Project concept\\LMS\\Declerative\\projectF#.fsproj": {
+    "D:\\Library system\\LMS\\Declerative\\projectF#.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Desktop\\Project concept\\LMS\\Declerative\\projectF#.fsproj",
+        "projectUniqueName": "D:\\Library system\\LMS\\Declerative\\projectF#.fsproj",
         "projectName": "projectF#",
-        "projectPath": "E:\\Desktop\\Project concept\\LMS\\Declerative\\projectF#.fsproj",
-        "packagesPath": "C:\\Users\\a\\.nuget\\packages\\",
-        "outputPath": "E:\\Desktop\\Project concept\\LMS\\Declerative\\obj\\",
+        "projectPath": "D:\\Library system\\LMS\\Declerative\\projectF#.fsproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "D:\\Library system\\LMS\\Declerative\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\a\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11\\FSharp\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\9.0.100\\FSharp\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -50,7 +43,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[9.0.100-beta.24466.6, )",
+              "version": "[9.0.100, )",
               "generatePathProperty": true
             },
             "MySql.Data": {
@@ -80,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.2.24474.11/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

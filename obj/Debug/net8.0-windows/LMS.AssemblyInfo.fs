@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("LMS")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f4dcdaa84b57e2437f179053ef3c2aef369fcad")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73513c0d832f0fd01222096d16254f0fb8b5f045")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("LMS")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("LMS")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

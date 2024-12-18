@@ -16,22 +16,24 @@ let userManagement (userId) =
     let rec menu () =
         printfn "1) Show Details "
         printfn "2) Update Details"
-        printfn "3) Borrow Book"
-        printfn "4) Return Book"
-        printfn "5) History Of Borrow Books"
-        printfn "6) Exit"
+        printfn "3) Search Book"
+        printfn "4) Borrow Book"
+        printfn "5) Return Book"
+        printfn "6) History Of Borrow Books"
+        printfn "7) Exit"
         printf "Choose an option: "
         match Console.ReadLine() with
         | "1" ->
-            User.showUserDetails conn
+            User.showUserDetails  conn userId
             menu()
         | "2" ->
             User.updateUser conn userId
             menu()
-        | "3" ->  printResult (User.borrowBook conn userId); menu()
-        | "4" -> printResult (User.returnBook conn userId); menu()
-        | "5" -> printHistory (User.borrowingHistory conn userId); menu()
-        | "6" -> printfn "Exiting. Thank you!"
+        | "3" -> Admin.searchBook conn ; menu ()
+        | "4" -> printResult (User.borrowBook conn userId); menu()
+        | "5" -> printResult (User.returnBook conn userId); menu()
+        | "6" -> printHistory (User.borrowingHistory conn userId); menu()
+        | "7" -> printfn "Exiting. Thank you!"
         | _ -> printfn "Invalid choice."; menu()
 
     menu()
