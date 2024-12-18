@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\a\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.12.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\a\.nuget\packages\" />
+    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgSystem_Text_Json Condition=" '$(PkgSystem_Text_Json)' == '' ">C:\Users\a\.nuget\packages\system.text.json\9.0.0</PkgSystem_Text_Json>
+    <PkgSystem_Drawing_Common Condition=" '$(PkgSystem_Drawing_Common)' == '' ">C:\Users\a\.nuget\packages\system.drawing.common\9.0.0</PkgSystem_Drawing_Common>
+    <PkgSystem_Data_SQLite Condition=" '$(PkgSystem_Data_SQLite)' == '' ">C:\Users\a\.nuget\packages\system.data.sqlite\1.0.66.1</PkgSystem_Data_SQLite>
+    <PkgMySql_Data Condition=" '$(PkgMySql_Data)' == '' ">C:\Users\a\.nuget\packages\mysql.data\9.1.0</PkgMySql_Data>
+    <PkgMicrosoft_Data_Sqlite Condition=" '$(PkgMicrosoft_Data_Sqlite)' == '' ">C:\Users\a\.nuget\packages\microsoft.data.sqlite\9.0.0</PkgMicrosoft_Data_Sqlite>
+    <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\a\.nuget\packages\fsharp.core\9.0.100-beta.24466.6</PkgFSharp_Core>
+  </PropertyGroup>
+</Project>

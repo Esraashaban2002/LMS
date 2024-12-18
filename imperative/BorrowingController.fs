@@ -1,4 +1,4 @@
-module imperative.BorrowingController
+module BorrowingController
 
 open System
 open Microsoft.Data.Sqlite
@@ -37,15 +37,20 @@ let borrowBook (conn: MySqlConnection) (bookNameTextBox: TextBox) (statusLabel: 
                             updateCopiesCmd.ExecuteNonQuery() |> ignore
 
                             statusLabel.Text <- "Book borrowed successfully!"
+                            statusLabel.ForeColor <- Color.Green
                 else
                             statusLabel.Text <- "No copies of this book are available."
+                            statusLabel.ForeColor <- Color.Red
             else
                         statusLabel.Text <- "Book not found."
+                        statusLabel.ForeColor <- Color.Red
         
         with
         | ex -> statusLabel.Text <- sprintf "Error borrowing book: %s" ex.Message
+                statusLabel.ForeColor <- Color.Red
     | None -> 
          statusLabel.Text <- "No user is currently logged in. Please log in first."
+         statusLabel.ForeColor <- Color.Red
 
 let returnBook (conn: MySqlConnection) (bookNameTextBox: TextBox) (statusLabel: Label) =
     match Connection.UserId with
@@ -78,15 +83,20 @@ let returnBook (conn: MySqlConnection) (bookNameTextBox: TextBox) (statusLabel: 
                         updateCopiesCmd.ExecuteNonQuery() |> ignore
 
                         statusLabel.Text <- "Book returned successfully!"
+                        statusLabel.ForeColor <- Color.Green
                     else
                         statusLabel.Text <- "No record found for this borrowing."
+                        statusLabel.ForeColor <- Color.Red
             else
                     statusLabel.Text <- "Book not found."
+                    statusLabel.ForeColor <- Color.Red
            
         with
         | ex -> statusLabel.Text <- sprintf "Error returning book: %s" ex.Message
+                statusLabel.ForeColor <- Color.Red
     | None -> 
          statusLabel.Text <- "No user is currently logged in. Please log in first."
+         statusLabel.ForeColor <- Color.Red
 
 let borrowingHistoryAdmin (conn: MySqlConnection) (emailTextBox: TextBox) (listBox: DataGridView) (statusLabel: Label) =
     try
@@ -115,10 +125,13 @@ let borrowingHistoryAdmin (conn: MySqlConnection) (emailTextBox: TextBox) (listB
 
             else
                 statusLabel.Text <- "No borrowing history found for this user."
+                statusLabel.ForeColor <- Color.Red
         else
             statusLabel.Text <- "User not found."
+            statusLabel.ForeColor <- Color.Red
     with
     | ex -> statusLabel.Text <- (sprintf "Error fetching borrowing history: %s" ex.Message)
+            statusLabel.ForeColor <- Color.Red
 
 let borrowingHistoryUser (conn: MySqlConnection) (listBox: DataGridView) (statusLabel: Label) =
     match Connection.UserId with
@@ -143,8 +156,11 @@ let borrowingHistoryUser (conn: MySqlConnection) (listBox: DataGridView) (status
                     listBox.Rows.Add(currentBookName, currentBorrowedDtate, currentReturnedDtate)
                 else
                     statusLabel.Text <- "No borrowing history found for this user."
+                    statusLabel.ForeColor <- Color.Red
           
         with
         | ex -> statusLabel.Text <- sprintf "Error fetching borrowing history: %s" ex.Message
+                statusLabel.ForeColor <- Color.Red
     | None ->
          statusLabel.Text <- "No user is currently logged in. Please log in first."    
+         statusLabel.ForeColor <- Color.Red

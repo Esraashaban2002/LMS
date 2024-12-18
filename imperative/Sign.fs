@@ -1,4 +1,4 @@
-module imperative.Sign
+module Sign
 
 open System
 open System.Windows.Forms
@@ -73,7 +73,7 @@ let LoginForm (expectedRole: string) =
 
     let statusLabel = new Label(Location = Point(10, 80), Width = 400, Height = 30)
 
-    let regLabel = new Label(Text="if you don't have account Create new Account" ,Location = Point(10, 160), Width = 400, Height = 30)
+    let regLabel = new Label(Text="if you don't have account Create new Account" ,Location = Point(10, 160), Width = 400, Height = 30 ,ForeColor = Color.Blue)
 
     let loginButton = new Button(Text = "Login", AutoSize = true, Location = Point(200, 110), BackColor = Color.Blue , ForeColor = Color.White , Font = new Font("sans", 19.0f) )
 

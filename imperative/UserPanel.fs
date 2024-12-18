@@ -1,4 +1,4 @@
-module imperative.UserPanel
+module UserPanel
 
 open System
 open System.Windows.Forms

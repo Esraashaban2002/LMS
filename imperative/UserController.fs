@@ -1,4 +1,4 @@
-module imperative.UserController
+module UserController
 
 open System
 open System.Windows.Forms

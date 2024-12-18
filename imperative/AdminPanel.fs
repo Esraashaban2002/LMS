@@ -1,4 +1,4 @@
-module imperative.AdminPanel
+module AdminPanel
 
 open System
 open System.Windows.Forms

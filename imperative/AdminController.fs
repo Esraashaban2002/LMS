@@ -1,4 +1,4 @@
-module imperative.AdminController
+module AdminController
 
 open System
 open System.Windows.Forms

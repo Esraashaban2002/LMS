@@ -1,4 +1,4 @@
-module imperative.MemberController
+module MemberController
 
 open System
 open System.Windows.Forms
@@ -40,12 +40,16 @@ let updateUser (conn: MySqlConnection)(nameTextBox: TextBox) (emailTextBox: Text
             let rows = cmd.ExecuteNonQuery()
             if rows > 0 then
                 statusLabel.Text <- sprintf "%d user(s) updated successfully." rows
+                statusLabel.ForeColor <- Color.Green
             else
                 statusLabel.Text <- "No user found with the given email."
+                statusLabel.ForeColor <- Color.Red
         with
         | ex -> statusLabel.Text <- sprintf "Error while updating the user: %s" ex.Message
+                statusLabel.ForeColor <- Color.Red
     | None ->
          statusLabel.Text <- "No user is currently logged in. Please log in first."
+         statusLabel.ForeColor <- Color.Red
          
 
 // Show User Details Function
@@ -71,7 +75,10 @@ let showUserDetails (conn: MySqlConnection) (nameTextBox: TextBox) (emailTextBox
 
             else
                 statusLabel.Text <- "No user found with the given  email."
+                statusLabel.ForeColor <- Color.Red
         with
         | ex -> statusLabel.Text <- sprintf "Error fetching user details: %s" ex.Message
+                statusLabel.ForeColor <- Color.Red
     | None ->
          statusLabel.Text <- "No user is currently logged in. Please log in first."
+         statusLabel.ForeColor <- Color.Red

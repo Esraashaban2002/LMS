@@ -1,4 +1,4 @@
-﻿module  imperative.Program 
+﻿module Program 
 
 open System
 open System.Windows.Forms
@@ -32,4 +32,10 @@ let mainForm () =
     form.Controls.Add(adminButton)
 
     // Display the form
-    form.Show()
+    Application.Run(form)
+
+// Entry point of the program
+[<EntryPoint>]
+let main argv =
+    mainForm ()
+    0

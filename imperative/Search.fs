@@ -1,4 +1,4 @@
-module imperative.Search
+module Search
 
 open System
 open System.Windows.Forms

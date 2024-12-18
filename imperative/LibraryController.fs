@@ -1,4 +1,4 @@
-module imperative.LibraryController
+module LibraryController
 
 open System
 open Microsoft.Data.Sqlite
@@ -15,6 +15,7 @@ let bookExists (conn: MySqlConnection) (bookIdTextBox: TextBox) (statusLabel: La
     with
     | ex ->
         statusLabel.Text <- sprintf "Error checking if book exists: %s" ex.Message
+        statusLabel.ForeColor <- Color.Red
         false
 
 let rec getValidCopies (copiesTextBox: TextBox) (statusLabel: Label) =
@@ -22,12 +23,14 @@ let rec getValidCopies (copiesTextBox: TextBox) (statusLabel: Label) =
         let numberOfCopies = Int32.Parse(copiesTextBox.Text)
         if numberOfCopies <= 0 then
             statusLabel.Text <- "Invalid input. Number of copies must be greater than 0."
+            statusLabel.ForeColor <- Color.Red
             getValidCopies copiesTextBox statusLabel
         else
             numberOfCopies
     with
     | :? FormatException ->
         statusLabel.Text <- "Invalid input. Please enter a valid integer value for the Number of copies."
+        statusLabel.ForeColor <- Color.Red
         getValidCopies copiesTextBox statusLabel
 
 // Add a new book
@@ -37,6 +40,7 @@ let addBook (conn: MySqlConnection) (bookNameTextBox: TextBox) (bookGenerTextBox
         use cmd = new MySqlCommand("CREATE TABLE IF NOT EXISTS Book (Book_ID INT AUTO_INCREMENT PRIMARY KEY, Book_Name VARCHAR(255) NOT NULL, Book_Type VARCHAR(255), Author_Name VARCHAR(255), Number_of_Copies INT NOT NULL)", conn)
         cmd.ExecuteNonQuery() |> ignore
         statusLabel.Text <- "Table checked or created successfully."
+        statusLabel.ForeColor <- Color.Green
 
         let bookName = bookNameTextBox.Text
         let gener = bookGenerTextBox.Text
@@ -52,6 +56,7 @@ let addBook (conn: MySqlConnection) (bookNameTextBox: TextBox) (bookGenerTextBox
 
         if bookExists then
             statusLabel.Text <- "The book already exists in the database."
+            statusLabel.ForeColor <- Color.Red
             bookNameTextBox.Text <- ""
             bookGenerTextBox.Text <- ""
             authorNameTextBox.Text <- ""
@@ -66,9 +71,11 @@ let addBook (conn: MySqlConnection) (bookNameTextBox: TextBox) (bookGenerTextBox
             insertCmd.ExecuteNonQuery() |> ignore
 
             statusLabel.Text <- "Book added successfully!"
+            statusLabel.ForeColor <- Color.Green
     with
     | ex ->
         statusLabel.Text <- sprintf "Error adding book: %s" ex.Message
+        statusLabel.ForeColor <- Color.Red
 
 // Update book
 let updateBook (conn: MySqlConnection) (bookIdTextBox: TextBox) (bookNameTextBox: TextBox) (bookGenerTextBox: TextBox) (authorNameTextBox: TextBox) (copiesTextBox: TextBox) (statusLabel: Label) =
@@ -123,15 +130,20 @@ let updateBook (conn: MySqlConnection) (bookIdTextBox: TextBox) (bookNameTextBox
                 form.Controls.Add(updateButton)
             else
                 statusLabel.Text <- "Book not found in the database."
+                statusLabel.ForeColor <- Color.Red
         else
             statusLabel.Text <- "Book not found in the database."
+            statusLabel.ForeColor <- Color.Red
     with
     | :? FormatException as ex ->
         statusLabel.Text <- sprintf "Invalid input: %s" ex.Message
+        statusLabel.ForeColor <- Color.Red
     | :? MySqlException as ex ->
         statusLabel.Text <- sprintf "Database error: %s" ex.Message
+        statusLabel.ForeColor <- Color.Red
     | ex ->
         statusLabel.Text <- sprintf "Error updating book: %s" ex.Message
+        statusLabel.ForeColor <- Color.Red
 
 // Delete a book
 let deleteBookById (conn: MySqlConnection) (bookIdTextBox: TextBox) (statusLabel: Label) =
@@ -144,10 +156,13 @@ let deleteBookById (conn: MySqlConnection) (bookIdTextBox: TextBox) (statusLabel
             cmd.Parameters.AddWithValue("@bookId", bookId) |> ignore
             cmd.ExecuteNonQuery() |> ignore
             statusLabel.Text <-  "Book deleted successfully!"
+            statusLabel.ForeColor <- Color.Green
         else
             statusLabel.Text <-  "Book not found in the database."
+            statusLabel.ForeColor <- Color.Red
     with
     | ex -> statusLabel.Text <- (sprintf "Error deleting book: %s" ex.Message)
+            statusLabel.ForeColor <- Color.Red
 
 // Delete all books
 let deleteAllBooks (conn: MySqlConnection) (statusLabel: Label) =
@@ -156,8 +171,10 @@ let deleteAllBooks (conn: MySqlConnection) (statusLabel: Label) =
         use cmd = new MySqlCommand("DELETE FROM Book", conn)
         cmd.ExecuteNonQuery() |> ignore
         statusLabel.Text <- ("All books deleted successfully!")
+        statusLabel.ForeColor <- Color.Green
     with
     | ex -> statusLabel.Text <- (sprintf "Error deleting book: %s" ex.Message)
+            statusLabel.ForeColor <- Color.Red
 
 // Search book 
 let searchBook (conn: MySqlConnection) (typeSearch: string) (bookIdTextBox: TextBox) (bookTextBox: TextBox)  (bookNameTextBox: TextBox) (bookGenreTextBox: TextBox) (authorNameTextBox: TextBox) (copiesTextBox: TextBox) (statusLabel: Label) =
@@ -189,9 +206,12 @@ let searchBook (conn: MySqlConnection) (typeSearch: string) (bookIdTextBox: Text
 
             reader.Close()
 
-        else  statusLabel.Text <- "No books found matching the search criteria."  
+        else  
+            statusLabel.Text <- "No books found matching the search criteria."  
+            statusLabel.ForeColor <- Color.Red
     with
     | ex -> statusLabel.Text <- sprintf "Error: %s" ex.Message
+            statusLabel.ForeColor <- Color.Red
 
 // Availd Books
 let listAvailableBooks (conn: MySqlConnection) (listBox: DataGridView) (statusLabel: Label) =
@@ -209,5 +229,7 @@ let listAvailableBooks (conn: MySqlConnection) (listBox: DataGridView) (statusLa
                 listBox.Rows.Add(currentBookId, currentBookName, currentGenre, currentAuthorName, currentNumberOfCopies)
         else
             statusLabel.Text <- "No available books found."
+            statusLabel.ForeColor <- Color.Red
     with
     | ex -> statusLabel.Text <- (sprintf "Error displaying available books: %s" ex.Message)
+            statusLabel.ForeColor <- Color.Red
